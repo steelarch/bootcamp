@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bootcamp-nginx
+  namespace: muco
+  labels:
+    node: mucobaba
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bootcamp-nginx
+  template:
+    metadata:
+      labels:
+        app: bootcamp-nginx
+    spec:
+      containers:
+      - name: muco-app
+        image: steelarch/bootcamp_nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
